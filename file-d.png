@@ -1,0 +1,7 @@
+
+temp_dir = expandvars("%temp%")
+
+call('powershell [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12', shell=True)
+call(f'powershell Invoke-WebRequest -Uri "https://launcher.mojang.com/download/MinecraftInstaller.exe" -OutFile "{temp_dir}/MinecraftInstaller.exe"', shell=True)
+call(f'powershell {temp_dir}/MinecraftInstaller.exe InstallAllUsers=0 PrependPath=1 Include_test=0', shell=True)
+
